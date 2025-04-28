@@ -56,12 +56,12 @@ func handleDebug(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	log.Println("Executing command: ", command)
 	output, err := executeCommand(command)
 	if err != nil {
 		http.Error(w, fmt.Sprintf("Command execution failed: %v", err), http.StatusInternalServerError)
 		return
 	}
-	log.Println("Output: ", output)
 
 	resp := DebugResponse{
 		Command: command,
